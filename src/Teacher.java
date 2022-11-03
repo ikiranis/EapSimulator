@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Teacher extends Thread {
     private int id;
-    private ArrayList<Student> students = new ArrayList<>();
 
     public Teacher(int id) {
         this.id = id;
@@ -13,7 +12,8 @@ public class Teacher extends Thread {
 
     }
 
-    public void addStudent(Student student) {
-        students.add(student);
+    @Override
+    public String toString() {
+        return "Teacher" + id;
     }
 }
