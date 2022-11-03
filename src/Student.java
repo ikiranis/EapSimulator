@@ -1,10 +1,8 @@
 public class Student extends Thread {
     private int id;
-    private String name;
 
-    public Student(int id, String name) {
+    public Student(int id) {
         this.id = id;
-        this.name = name;
     }
 
     @Override
