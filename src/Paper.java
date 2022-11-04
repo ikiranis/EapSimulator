@@ -1,4 +1,4 @@
-public class Paper {
+public class Paper implements Work {
     private int number;
     private int grade;
 
@@ -8,5 +8,13 @@ public class Paper {
 
     public void setGrade(int grade) {
         this.grade = grade;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

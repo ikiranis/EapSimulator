@@ -7,7 +7,7 @@ public class Main {
     private static ArrayList<Teacher> teachers = new ArrayList<>();
 
     private static void generateStudents() {
-        int numberOfStudents = random.nextInt(101 - 50) + 50;
+        int numberOfStudents = random.nextInt(6 - 1) + 1;
         for(int i=1; i<=numberOfStudents; i++) {
             int teacherId = random.nextInt(teachers.size());
             students.add(new Student(i, teachers.get(teacherId)));
@@ -15,9 +15,32 @@ public class Main {
     }
 
     private static void generateTeachers() {
-        int numberOfTeachers = random.nextInt(16 - 5) + 5;
+        int numberOfTeachers = random.nextInt(6 - 1) + 1;
         for(int i=1; i<=numberOfTeachers; i++) {
             teachers.add(new Teacher(i));
+        }
+    }
+
+    /**
+     * Εκκίνηση όλων των threads, περνώντας τις αντίστοιχες παραμέτρους δεδομένων σε κάθε ένα
+     *
+     */
+    private static void startThreads() {
+        for(int i=0; i<students.size(); i++) {
+            students.get(i).start();
+        }
+    }
+
+    /**
+     * Αναμονή από το thread της main, για να τερματίσουν όλα τα threads
+     */
+    private static void waitThreads() {
+        for (Student student: students) {
+            try {
+                student.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -25,10 +48,9 @@ public class Main {
         generateTeachers();
         generateStudents();
 
+        startThreads();
 
-        System.out.println(teachers);
-        System.out.println(students);
-
+        waitThreads();
 
     }
 }
