@@ -11,6 +11,7 @@ public class Main {
         for(int i=1; i<=numberOfStudents; i++) {
             int teacherId = random.nextInt(teachers.size());
             students.add(new Student(i, teachers.get(teacherId)));
+            teachers.get(teacherId).addStudent(students.get(i-1));
         }
     }
 
@@ -26,8 +27,8 @@ public class Main {
      *
      */
     private static void startThreads() {
-        for(int i=0; i<students.size(); i++) {
-            students.get(i).start();
+        for(int i=0; i<teachers.size(); i++) {
+            teachers.get(i).start();
         }
     }
 
@@ -35,9 +36,9 @@ public class Main {
      * Αναμονή από το thread της main, για να τερματίσουν όλα τα threads
      */
     private static void waitThreads() {
-        for (Student student: students) {
+        for (Teacher teacher: teachers) {
             try {
-                student.join();
+                teacher.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

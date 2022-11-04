@@ -17,7 +17,7 @@ public class Student extends Thread {
     private void writePapers() {
         for(int i=0; i<4; i++) {
             papers[i] = new Paper(i+1);
-            System.out.println("Ο φοιτητής " + this + " αρχίζει την εργασία " + papers[i].getNumber());
+            System.out.println("Ο " + this + " παρέδωσε την ΓΕ" + papers[i].getNumber());
 
             try {
                 Thread.sleep(3000);
@@ -25,14 +25,13 @@ public class Student extends Thread {
                 Thread.currentThread().interrupt();
             }
 
-            teacher.setGrade(papers[i]);
+            teacher.setGrade(papers[i], this);
 
         }
     }
 
     @Override
     public String toString() {
-
         return "Student" + id;
     }
 }

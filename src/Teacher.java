@@ -3,6 +3,8 @@ import java.util.Random;
 
 public class Teacher extends Thread {
     private int id;
+    private ArrayList<Student> students = new ArrayList<>();
+
     private Random random = new Random();
 
     public Teacher(int id) {
@@ -11,11 +13,21 @@ public class Teacher extends Thread {
 
     @Override
     public void run() {
+        for(Student student : students) {
+            student.start();
+        }
 
+        for (Student student : students) {
+            try {
+                student.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public synchronized void setGrade(Work work) {
-        System.out.println("Ο καθηγητής " + this + " βαθμολογεί την εργασία " + work.getNumber());
+    public synchronized void setGrade(Work work, Student student) {
+        System.out.println("Ο " + this + " βαθμολογεί την ΓΕ" + work.getNumber() + " του " + student);
 
         try {
             Thread.sleep(3000);
@@ -23,8 +35,12 @@ public class Teacher extends Thread {
             Thread.currentThread().interrupt();
         }
 
-        work.setGrade(random.nextInt(11 + 1) + 1);
-        System.out.println("Ο καθηγητής " + this + " βαθμολόγησε την εργασία " + work.getNumber() + " με βαθμό " + work.getGrade());
+        work.setGrade(random.nextInt(11 - 1) + 1);
+        System.out.println("Ο " + this + " βαθμολόγησε την ΓΕ" + work.getNumber() + " (" + work.getGrade() + ") του " + student);
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
     }
 
     @Override
