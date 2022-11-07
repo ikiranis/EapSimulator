@@ -12,6 +12,7 @@ public class Student extends Thread {
     @Override
     public void run() {
         writePapers();
+        writeExams();
     }
 
     private void writePapers() {
@@ -27,6 +28,25 @@ public class Student extends Thread {
 
             teacher.setGrade(papers[i], this);
 
+        }
+    }
+
+    private void writeExams() {
+        for(int i=0; i<2; i++) {
+            exams[i] = new Exam(i+1);
+            if (i == 0) {
+                System.out.println("Ο " + this + " συμμετείχε στις τελικές εξετάσεις");
+            } else {
+                System.out.println("Ο " + this + " συμμετείχε στις επαναληπτικές εξετάσεις");
+            }
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
+            teacher.setGrade(exams[i], this);
         }
     }
 
