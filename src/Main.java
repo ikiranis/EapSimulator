@@ -45,6 +45,15 @@ public class Main {
         }
     }
 
+    private static void printFinalGrades() {
+        System.out.println("\nΟι τελικές βαθμολογίες των φοιτητών, είναι");
+        System.out.println("------------------------------------------");
+
+        for (Student student : students) {
+            System.out.println(student.getFinalGradeText());
+        }
+    }
+
     public static void main(String[] args) {
         generateTeachers();
         generateStudents();
@@ -53,5 +62,6 @@ public class Main {
 
         waitThreads();
 
+        printFinalGrades();
     }
 }

@@ -24,6 +24,8 @@ public class Teacher extends Thread {
                 e.printStackTrace();
             }
         }
+
+        waitStudentsThreads();
     }
 
     public synchronized void setGrade(Work work, Student student) {
@@ -44,6 +46,16 @@ public class Teacher extends Thread {
 
     public void addStudent(Student student) {
         students.add(student);
+    }
+
+    private void waitStudentsThreads() {
+        for (Student student: students) {
+            try {
+                student.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

@@ -18,7 +18,15 @@ public class Student extends Thread {
         if(papersSum >= 20) {
             writeExams();
         } else {
-            System.out.println("Ο " + this + " δεν μπορεί να συμμετάσχει στις εξετάσεις, γιατί έχει συνολικό βαθμό " + papersSum);
+            setNullExams();
+            System.out.println("Ο " + this + " δεν μπορεί να συμμετάσχει στις εξετάσεις, γιατί έχει συνολικό βαθμό εργασιών " + papersSum);
+        }
+    }
+
+    private void setNullExams() {
+        for(int i=0; i<2; i++) {
+            exams[i] = new Exam(i + 1);
+            exams[i].setGrade(0);
         }
     }
 
@@ -40,13 +48,14 @@ public class Student extends Thread {
 
     private void writeExams() {
         for(int i=0; i<2; i++) {
+            exams[i] = new Exam(i+1);
+
             if (i == 1) {
-                if (exams[0].getGrade() > 4) {
+                if (exams[0].getGrade() >= 5) {
+                    exams[1].setGrade(0);
                     continue;
                 }
             }
-
-            exams[i] = new Exam(i+1);
 
             System.out.println("Ο " + this + " συμμετείχε στις " + exams[i]);
 
@@ -68,6 +77,26 @@ public class Student extends Thread {
         }
 
         return sum;
+    }
+
+    private int getFinalGrade() {
+        if (exams[1].getGrade() != 0) {
+            if (exams[1].getGrade() > exams[0].getGrade()) {
+                return exams[1].getGrade();
+            }
+
+            return exams[0].getGrade();
+        }
+
+        return exams[0].getGrade();
+    }
+
+    public String getFinalGradeText() {
+        if (exams[0].getGrade() == 0) {
+            return "Ο " + this + " δεν μπόρεσε να συμμετάσχει στις εξετάσεις, γιατί είχε συνολικό βαθμό εργασιών " + calcPapersSumGrade();
+        }
+
+        return "Η τελική βαθμολογία του " + this + " είναι: " + getFinalGrade();
     }
 
     @Override
