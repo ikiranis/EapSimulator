@@ -17,4 +17,13 @@ public class Exam implements Work {
     public int getGrade() {
         return grade;
     }
+
+    @Override
+    public String toString() {
+        if (number == 1) {
+            return "τελικές εξετάσεις";
+        } else {
+            return "επαναληπτικές εξετάσεις";
+        }
+    }
 }

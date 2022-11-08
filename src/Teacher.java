@@ -27,11 +27,9 @@ public class Teacher extends Thread {
     }
 
     public synchronized void setGrade(Work work, Student student) {
-        if(work instanceof Paper) {
-            System.out.println("Ο " + this + " βαθμολογεί την ΓΕ" + work.getNumber() + " του " + student);
-        } else {
-            System.out.println("Ο " + this + " βαθμολογεί τις εξετάσεις " + work.getNumber() + " του " + student);
-        }
+        System.out.println("Ο " + this + " βαθμολογεί "
+                + ((work instanceof Paper) ? "την " : "τις ")
+                + work + " του " + student);
 
         try {
             Thread.sleep(3000);
@@ -40,11 +38,10 @@ public class Teacher extends Thread {
         }
 
         work.setGrade(random.nextInt(11 - 1) + 1);
-        if(work instanceof Paper) {
-            System.out.println("Ο " + this + " βαθμολόγησε την ΓΕ" + work.getNumber() + " (" + work.getGrade() + ") του " + student);
-        } else {
-            System.out.println("Ο " + this + " βαθμολόγησε τις εξετάσεις " + work.getNumber() + " (" + work.getGrade() + ") του " + student);
-        }
+
+        System.out.println("Ο " + this + " βαθμολόγησε "
+                + ((work instanceof Paper) ? "την " : "τις ") + work
+                + " (" + work.getGrade() + ") του " + student);
     }
 
     public void addStudent(Student student) {

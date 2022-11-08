@@ -18,7 +18,7 @@ public class Student extends Thread {
     private void writePapers() {
         for(int i=0; i<4; i++) {
             papers[i] = new Paper(i+1);
-            System.out.println("Ο " + this + " παρέδωσε την ΓΕ" + papers[i].getNumber());
+            System.out.println("Ο " + this + " παρέδωσε την " + papers[i]);
 
             try {
                 Thread.sleep(3000);
@@ -33,12 +33,15 @@ public class Student extends Thread {
 
     private void writeExams() {
         for(int i=0; i<2; i++) {
-            exams[i] = new Exam(i+1);
-            if (i == 0) {
-                System.out.println("Ο " + this + " συμμετείχε στις τελικές εξετάσεις");
-            } else {
-                System.out.println("Ο " + this + " συμμετείχε στις επαναληπτικές εξετάσεις");
+            if (i == 1) {
+                if (exams[0].getGrade() > 4) {
+                    continue;
+                }
             }
+
+            exams[i] = new Exam(i+1);
+
+            System.out.println("Ο " + this + " συμμετείχε στις " + exams[i]);
 
             try {
                 Thread.sleep(3000);
