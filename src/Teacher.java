@@ -27,9 +27,9 @@ public class Teacher extends Thread {
     }
 
     public synchronized void setGrade(Work work, Student student) {
-        System.out.println("Ο " + this + " βαθμολογεί "
-                + ((work instanceof Paper) ? "την " : "τις ")
-                + work + " του " + student);
+        String pronounce = (work instanceof Paper) ? "την " : "τις ";
+
+        System.out.println("Ο " + this + " βαθμολογεί " + pronounce + work + " του " + student);
 
         try {
             Thread.sleep(3000);
@@ -39,9 +39,7 @@ public class Teacher extends Thread {
 
         work.setGrade(random.nextInt(11 - 1) + 1);
 
-        System.out.println("Ο " + this + " βαθμολόγησε "
-                + ((work instanceof Paper) ? "την " : "τις ") + work
-                + " (" + work.getGrade() + ") του " + student);
+        System.out.println("Ο " + this + " βαθμολόγησε " + pronounce + work + " (" + work.getGrade() + ") του " + student);
     }
 
     public void addStudent(Student student) {

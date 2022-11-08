@@ -12,7 +12,14 @@ public class Student extends Thread {
     @Override
     public void run() {
         writePapers();
-        writeExams();
+
+        int papersSum = calcPapersSumGrade();
+
+        if(papersSum >= 20) {
+            writeExams();
+        } else {
+            System.out.println("Ο " + this + " δεν μπορεί να συμμετάσχει στις εξετάσεις, γιατί έχει συνολικό βαθμό " + papersSum);
+        }
     }
 
     private void writePapers() {
@@ -51,6 +58,16 @@ public class Student extends Thread {
 
             teacher.setGrade(exams[i], this);
         }
+    }
+
+    private int calcPapersSumGrade() {
+        int sum = 0;
+
+        for (Paper paper : papers) {
+            sum += paper.getGrade();
+        }
+
+        return sum;
     }
 
     @Override
