@@ -65,7 +65,24 @@ public class Student extends Thread {
                 Thread.currentThread().interrupt();
             }
 
-            teacher.setGrade(exams[i], this);
+            gradeExams(Main.getGradeKind(), exams[i]);
+        }
+    }
+
+    private void gradeExams(boolean gradeKind, Exam exam) {
+        if (gradeKind) {
+            teacher.setGrade(exam, this);
+        } else {
+            int sum = 0;
+
+            for (Teacher teacher : Main.getTeachers()) {
+                sum += teacher.getGrade(this, exam);
+            }
+
+            int averageGrade = sum / Main.getTeachers().size();
+            System.out.println("Οι καθηγητές βαθμολόγησαν τον " + this + " στις " + exam + " με βαθμό: " + averageGrade);
+
+            exam.setGrade(averageGrade);
         }
     }
 

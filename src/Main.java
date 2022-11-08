@@ -5,6 +5,7 @@ public class Main {
     private static Random random = new Random();
     private static ArrayList<Student> students = new ArrayList<>();
     private static ArrayList<Teacher> teachers = new ArrayList<>();
+    private static boolean gradeKind = false;
 
     private static void generateStudents() {
         int numberOfStudents = random.nextInt(6 - 1) + 1;
@@ -52,6 +53,14 @@ public class Main {
         for (Student student : students) {
             System.out.println(student.getFinalGradeText());
         }
+    }
+
+    public static ArrayList<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public static boolean getGradeKind() {
+        return gradeKind;
     }
 
     public static void main(String[] args) {

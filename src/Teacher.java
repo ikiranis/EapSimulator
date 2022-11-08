@@ -44,6 +44,13 @@ public class Teacher extends Thread {
         System.out.println("Ο " + this + " βαθμολόγησε " + pronounce + work + " (" + work.getGrade() + ") του " + student);
     }
 
+    public synchronized int getGrade(Student student, Exam exam) {
+        int grade = random.nextInt(11 - 1) + 1;
+        System.out.println("O " + this + " βαθμολόγησε τον " + student + " στις " + exam + " με " + grade);
+
+        return grade;
+    }
+
     public void addStudent(Student student) {
         students.add(student);
     }
