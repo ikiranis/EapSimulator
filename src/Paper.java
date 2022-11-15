@@ -1,4 +1,8 @@
+/**
+ * Η κλάση των εργασιών
+ */
 public class Paper implements Work {
+    // Βασικά properties μια εργασίας
     private int number;
     private int grade;
 

@@ -1,4 +1,8 @@
+/**
+ * Η κλάση των εξετάσεων
+ */
 public class Exam implements Work {
+    // Βασικά properties των εξετάσεων
     private int number;
     private int grade;
 

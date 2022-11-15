@@ -7,8 +7,12 @@ public class Main {
     private static ArrayList<Teacher> teachers = new ArrayList<>();
     private static boolean gradeKind = false;
 
+    /**
+     * Δημιουργία τυχαίου αριθμού φοιτητών
+     */
     private static void generateStudents() {
         int numberOfStudents = random.nextInt(6 - 1) + 1;
+
         for(int i=1; i<=numberOfStudents; i++) {
             int teacherId = random.nextInt(teachers.size());
             students.add(new Student(i, teachers.get(teacherId)));
@@ -16,8 +20,12 @@ public class Main {
         }
     }
 
+    /**
+     * Δημιουργία τυχαίου αριθμού καθηγητών
+     */
     private static void generateTeachers() {
         int numberOfTeachers = random.nextInt(6 - 1) + 1;
+
         for(int i=1; i<=numberOfTeachers; i++) {
             teachers.add(new Teacher(i));
         }
@@ -25,7 +33,6 @@ public class Main {
 
     /**
      * Εκκίνηση όλων των threads, περνώντας τις αντίστοιχες παραμέτρους δεδομένων σε κάθε ένα
-     *
      */
     private static void startThreads() {
         for(int i=0; i<teachers.size(); i++) {
@@ -46,6 +53,9 @@ public class Main {
         }
     }
 
+    /**
+     * Τυπώνονται οι βαθμολογίες όλων των φοιτητών
+     */
     private static void printFinalGrades() {
         System.out.println("\nΟι τελικές βαθμολογίες των φοιτητών, είναι");
         System.out.println("------------------------------------------");
@@ -55,10 +65,19 @@ public class Main {
         }
     }
 
+    /**
+     * Getter που επιστρέφει όλους τους καθηγητές
+     * @return
+     */
     public static ArrayList<Teacher> getTeachers() {
         return teachers;
     }
 
+    /**
+     * Getter που δίνει το είδος της βαθμολόγησης
+     *
+     * @return
+     */
     public static boolean getGradeKind() {
         return gradeKind;
     }
