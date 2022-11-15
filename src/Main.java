@@ -7,6 +7,9 @@ public class Main {
     private static ArrayList<Teacher> teachers = new ArrayList<>();
     private static boolean gradeKind = false;
 
+    /**
+     * Κάνει μια τυχαία καθυστέρηση στο thread, 2-5 δευτερόλεπτα
+     */
     public static void waitTime() {
         try {
             Thread.sleep(random.nextInt(3000) + 2000);
