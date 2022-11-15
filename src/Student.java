@@ -44,18 +44,14 @@ public class Student extends Thread {
      * Ο φοιτητής γράφει εργασίες
      */
     private void writePapers() {
-        // Γράφει στην σειρά 4 εργασίες
+        // Γράφει στη σειρά 4 εργασίες
         for(int i=0; i<4; i++) {
             // Δημιουργείται το αντίστοιχο αντικείμενο για κάθε εργασία
             papers[i] = new Paper(i+1);
             System.out.println("Ο " + this + " παρέδωσε την " + papers[i]);
 
             // Καθυστέρηση για να εξομοιωθεί ο χρόνος συγγραφής της εργασίας
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            Main.waitTime();
 
             // Η εργασία παραδίδεται και ο καθηγητής καλείται να τη βαθμολογήσει
             // Επειδή η συγκεκριμένη μέθοδος είναι synchronized, το πρόγραμμα μπλοκάρεται εδώ,
@@ -86,11 +82,7 @@ public class Student extends Thread {
             System.out.println("Ο " + this + " συμμετείχε στις " + exams[i]);
 
             // Καθυστέρηση για να εξομοιωθεί ο χρόνος συμμετοχής στις εξετάσεις
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            Main.waitTime();
 
             // Οι εξετάσεις βαθμολογούνται
             gradeExams(Main.getGradeKind(), exams[i]);

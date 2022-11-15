@@ -7,6 +7,14 @@ public class Main {
     private static ArrayList<Teacher> teachers = new ArrayList<>();
     private static boolean gradeKind = false;
 
+    public static void waitTime() {
+        try {
+            Thread.sleep(random.nextInt(3000) + 2000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
     /**
      * Δημιουργία τυχαίου αριθμού φοιτητών
      */

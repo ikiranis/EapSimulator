@@ -40,11 +40,7 @@ public class Teacher extends Thread {
         System.out.println("Ο " + this + " βαθμολογεί " + pronounce + work + " του " + student);
 
         // Καθυστέρηση για να εξομοιωθεί ο χρόνος βαθμολόγησης
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        Main.waitTime();
 
         // Βαθμολογείται η εργασία/εξέταση με 1-10
         work.setGrade(random.nextInt(11 - 1) + 1);
@@ -63,6 +59,10 @@ public class Teacher extends Thread {
      */
     public synchronized int getGrade(Student student, Exam exam) {
         int grade = random.nextInt(11 - 1) + 1;
+
+        // Καθυστέρηση για να εξομοιωθεί ο χρόνος βαθμολόγησης
+        Main.waitTime();
+
         System.out.println("O " + this + " βαθμολόγησε τον " + student + " στις " + exam + " με " + grade);
 
         return grade;
