@@ -79,10 +79,10 @@ public class Student extends Thread {
                 }
             }
 
-            System.out.println("Ο " + this + " συμμετείχε στις " + exams[i]);
-
             // Καθυστέρηση για να εξομοιωθεί ο χρόνος συμμετοχής στις εξετάσεις
             Main.waitTime();
+
+            System.out.println("Ο " + this + " συμμετείχε στις " + exams[i]);
 
             // Οι εξετάσεις βαθμολογούνται
             gradeExams(Main.getGradeKind(), exams[i]);
